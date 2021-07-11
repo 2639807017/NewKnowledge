@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>Scroll</title>
+</head>
+<body>
+    <!-- header -->
+    <header id="home">
+        <!-- navbar -->
+        <nav id="nav">
+            <div class="nav-center">
+                <!-- nav header -->
+                <div class="nav-header">
+                    <img src="./logo (1).svg" class="logo" alt="logo">
+                    <button class="nav-toggle">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+                
+                <!-- links -->
+                <div class="links-container">
+                    <ul class="links">
+                    <li>
+                        <a href="#home" class="scroll-link">home</a>
+                    </li>
+                    <li>
+                        <a href="#about" class="scroll-link">about</a>
+                    </li>
+                    <li>
+                        <a href="#services" class="scroll-link">services</a>
+                    </li>
+                    <li>
+                        <a href="#tours" class="scroll-link">tours</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- banner -->
+        <div class="banner">
+            <div class="container">
+                <h1>scroll project</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus molestiae ipsam itaque. Recusandae temporibus iure ad eum inventore facere delectus!</p>
+                <button class="btn btn-white">explore tours</button>
+            </div>
+        </div>
+    </header>
+    <!-- about -->
+    <!--  -->
+    <section id="about" class="section">
+        <div class="title">
+            <h2>about <span>us</span></h2>
+        </div>
+    </section>
+    <!-- services -->
+    <section id="services" class="section">
+        <div class="title">
+            <h2>our<span>services</span></h>
+        </div>
+    </section>
+    <!-- tours -->
+    <section id="tours" class="section">
+        <div class="title">
+            <h2>featured<span>tours</span></h2>
+        </div>
+    </section>
+    <!-- footer -->
+    <footer>
+        <p>copyright &copy; backroads travel tours company <span id="date"></span>.all rights reserved
+        </p>
+    </footer>
+    <!-- back to top button -->
+    <a href="#home" class="scroll-link top-link">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+
+    <script>
+        date = document.getElementById("date");
+        date.innerHTML = new Date().getFullYear();
+        // ********** close links**********
+        const navToggle = document.querySelector(".nav-toggle");
+        const linksContainer = document.querySelector(".links-container");
+        const links = document.querySelector(".links");
+
+        navToggle.addEventListener("click", function(){
+            // linksContainer.classList.toggle("show-links");
+            // 不再固定的设置高度，而是动态的生成适应高度，即使html中的内容被改变也不会打乱样式
+            const containerHeight = linksContainer.getBoundingClientRect().height;
+            const linksHeight = links.getBoundingClientRect().height;
+            if(containerHeight === 0){
+                linksContainer.style.height = `${linksHeight}px`;
+            }else{
+                linksContainer.style.height = 0;
+            }
+        });
+        const navbar = document.getElementById("nav");
+        const topLink = document.querySelector(".top-link");
+        // *********fixed navbar*********
+        window.addEventListener("scroll", function(){
+            const scrollHeight = window.pageYOffset;
+            const navbarHeight = navbar.getBoundingClientRect().height;
+            if(scrollHeight > navbarHeight){
+                navbar.classList.add("fixed-nav");
+            }else{
+                navbar.classList.remove("fixed-nav");
+            }
+            if(scrollHeight > 500){
+                topLink.classList.add("show-link");
+            }else{
+                topLink.classList.remove("show-link");
+            }
+        });
+        const scrollLink = document.querySelectorAll(".scroll-link");
+        scrollLink.forEach(function(link){
+            link.addEventListener("click", function(e){
+                e.preventDefault();
+                const id = e.currentTarget.getAttribute("href").slice(1);
+                const element = document.getElementById(id);
+                const navHeight = navbar.getBoundingClientRect().height;
+                const containerHeight = linksContainer.getBoundingClientRect().height;
+                const fixedNav = navbar.classList.contains("fixed-nav");
+                // console.log(navHeight);
+                let position = element.offsetTop - navHeight;/*当nav变为第二种样式时（白色背景样式），点击导航栏，跳转后，nav不会遮住标题*/
+                // console.log(position);
+
+                if(!fixedNav){/*若nav没变为第二种样式，点击导航栏，position的值会减去nav的高度，使nav不会遮住标题*/
+                    position = position - navHeight;
+                }
+                if(navHeight > 82){/*当页面分辨率小于800且nav不是第二种样式时，点击导航按钮后显示的导航栏会将其他内容挤下去，
+                    使导航位置出现一个高度为导航栏高度的差值，所以position的值会加上导航栏的高度，以保证导航位置准确*/
+                    position = position + containerHeight;
+                }
+                window.scrollTo({
+                    left: 0,
+                    top: position,
+                });
+                linksContainer.style.height = 0;
+            });
+        })
+    </script>
+</body>
+</html>

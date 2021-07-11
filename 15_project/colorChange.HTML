@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color change</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+        }
+        body{
+            background-color: #f1f5f8;
+        }
+        nav{
+            /* background: #fff; */
+            height: 3rem;
+            display: grid;
+            align-items: center;
+            /* box-shadow: #222; */
+            box-shadow: #222;
+        }
+        .nav-center{
+            width: 90vw;
+            max-width: 62px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-center h4{
+            margin-bottom: 0;
+            color: hsl(205, 78%, 60%);
+        }
+        nav ul li{
+            list-style: none;
+        }
+
+        main{
+            min-height: calc(100vh - 3rem);
+            display: grid;
+            place-items: center;
+        }
+        .container{
+            text-align: center;
+        }
+        main h2{
+            background: #222;
+            padding: 1rem;
+            /* width: 300px; */
+            border-radius: 0.25rem;
+            margin-bottom: 2.5rem;
+            font-size: 2rem;
+            color: #fff;
+            line-height: 1.25;
+            font-weight: 400;
+            text-transform: capitalize;
+            letter-spacing: 0.1rem;
+        }
+        .color{
+            font-size: 25PX;
+            color: aqua;
+        }
+        .btn-hero{
+            text-transform: uppercase;
+            background: transparent;
+            color: #222;
+            letter-spacing: 0.1rem;
+            display: inline-block;
+            font-weight: 700;
+            transition: all 0.3s linear;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            padding: 0.75rem 1.25rem;
+        }
+        .btn-hero:hover{
+            color: #fff;
+            background: #222;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-center">
+            <h4>color flipper</h4>
+        </div>
+        <ul class="nav-links">
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <div class="container">
+            <h2>background color :
+                <span class="color">
+                    #F1F5F8
+                </span>
+            </h2>
+            <button class="btn btn-hero" id="btn">click me</button>
+        </div>
+    </main>
+    <!-- <script>
+        const colors = ["green","red","rgba(133,122,200)","#f15025"];
+        const btn = document.getElementById('btn');
+        const color = document.querySelector('.color');
+
+        btn.addEventListener("click",function(){
+            //得到一个0~3之间的数，作为colors的索引
+            const randNumber = getRandNumber();
+            console.log(randNumber);
+            document.body.style.backgroundColor = colors[randNumber];
+            color.textContent = colors[randNumber];
+        });
+        function getRandNumber(){
+            //随机生成一个数，并向下取整，因为random（）生成的随机数在0~1之间，所以乘以数组长度使随机生成数在0~4之间，
+            //然后向下取整来保证随机数在数组长度内且为整数
+            
+            return Math.floor(Math.random() * colors.length);
+        }
+    </script> -->
+    <script>
+        const hex = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F"];
+        const btn = document.getElementById("btn");
+        const color = document.querySelector('.color');
+
+        btn.addEventListener("click", function (){
+             let hexColor = '#';
+             for(let i = 0;i < 6;i++){/*循环6次，从数组中随机选取6次，组成一个16进制的颜色表示*/
+                hexColor += hex[getRandNumber()];
+             }
+             document.body.style.backgroundColor = hexColor;/*给body设置背景颜色，值是hexColor*/
+             color.textContent = hexColor;/*将hexColor显示出来*/
+        });
+
+        function getRandNumber(){
+        //随机生成一个数，并向下取整，因为random（）生成的随机数在0~1之间，所以乘以数组长度使随机生成数在0~4之间，
+            //然后向下取整来保证随机数在数组长度内且为整数
+
+            return Math.floor(Math.random() * hex.length);
+        }
+    </script>
+</body>
+</html>

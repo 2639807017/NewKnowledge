@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style2.css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <button class="sidebar-toggle">
+        <i class="fa fa-bars"></i>
+    </button>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="./logo.svg" class="logo" alt="logo">
+            <button class="close-btn">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+        <ul class="links">
+            <li>
+              <a href="index.html">home</a>
+            </li>
+            <li>
+              <a href="about.html">about</a>
+            </li>
+            <li>
+              <a href="projects.html">projects</a>
+            </li>
+            <li>
+              <a href="contact.html">contact</a>
+            </li>
+          </ul>
+          <!-- social media -->
+          <ul class="social-icons">
+            <li>
+              <a href="https://www.twitter.com">
+                <i class="fa fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.twitter.com">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.twitter.com">
+                <i class="fa fa-behance"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.twitter.com">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.twitter.com">
+                <i class="fa fa-sketch"></i>
+              </a>
+            </li>
+          </ul>
+    </aside>
+
+    <script>
+        const btn = document.querySelector(".sidebar-toggle");
+        const sideBar = document.querySelector(".sidebar");
+        const closeBtn = document.querySelector(".close-btn");
+
+        btn.addEventListener("click", function(){
+            sideBar.classList.toggle("show-sidebar");
+            
+        })
+        closeBtn.addEventListener("click",function(){
+            sideBar.classList.remove("show-sidebar");
+        })
+    </script>
+</body>
+</html>

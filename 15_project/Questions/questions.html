@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>Q & A</title>
+</head>
+<body>
+    <section class="questions">
+        <div class="title">
+            <h2>general questions</h2>
+        </div>
+        <div class="section-center">
+            <article class="question">
+                <div class="question-title">
+                    <p>do you accept all major credit cards?</p>
+                    <button class="question-btn">
+                        <span class="plus-icon">
+                            <i class="fa fa-plus-square"></i>
+                        </span>
+                        <span class="minus-icon">
+                            <i class="fa fa-minus-square"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="question-text">
+                    <p>Lorem ipsum dolor sit amet consectetur 
+                        adipisicing elit. Vel corrupti est quia! Laboriosam optio expedita voluptatum culpa beatae obcaecati perspiciatis.
+                    </p>
+                </div>
+            </article>
+            <!-- end single question -->
+            <article class="question">
+                <div class="question-title">
+                    <p>Do You Suppport Local Farmers?</p>
+                    <button class="question-btn">
+                        <span class="plus-icon">
+                            <i class="fa fa-plus-square"></i>
+                        </span>
+                        <span class="minus-icon">
+                            <i class="fa fa-minus-square"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="question-text">
+                    <p>Lorem ipsum dolor sit amet consectetur 
+                        adipisicing elit. Vel corrupti est quia! Laboriosam optio expedita voluptatum culpa beatae obcaecati perspiciatis.
+                    </p>
+                </div>
+            </article>
+            <!-- end single question -->
+            <article class="question">
+                <div class="question-title">
+                    <p>Do You Use Organic Ingredients?</p>
+                    <button class="question-btn">
+                        <span class="plus-icon">
+                            <i class="fa fa-plus-square"></i>
+                        </span>
+                        <span class="minus-icon">
+                            <i class="fa fa-minus-square"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="question-text">
+                    <p>Lorem ipsum dolor sit amet consectetur 
+                        adipisicing elit. Vel corrupti est quia! Laboriosam optio expedita voluptatum culpa beatae obcaecati perspiciatis.
+                    </p>
+                </div>
+            </article>
+            <!-- end single question -->
+        </div>
+    </section>
+
+    <script>
+        
+        const questions = document.querySelectorAll(".question");
+
+        questions.forEach(function(question){
+            const btn = question.querySelector(".question-btn");
+            //给当前btn添加单击相应函数 
+            btn.addEventListener("click",function(){
+                // 遍历，找出除当前添加的show-text类以外的show-text类
+                questions.forEach(function(item){
+                    // console.log(item);
+                    if(item !== question){//如果item不是当前点击的对象，则将其show-text类移除
+                        item.classList.remove("show-text");
+                    }
+                });
+                question.classList.toggle("show-text");
+            });
+        });
+
+        //当想要给对象添加 点击当前对象其他对象移除效果 功能时，下面代码显得笨重且复杂
+        // const btns = document.querySelectorAll(".question-btn");
+        // btns.forEach(function(btn){
+        //     btn.addEventListener("click", function(e){
+        //         const question = e.currentTarget.parentElement.parentElement;/*找到当前btn的父元素的父元素，即article元素，然后给其添加show-text类*/
+        //         question.classList.toggle("show-text");
+        //     });
+        // })
+    </script>
+</body>
+</html>

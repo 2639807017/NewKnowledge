@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=header, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Modal project</title>
+</head>
+<body>
+    <header class="hero">
+        <div class="banner">
+            <h1>modal project</h1>
+            <button class="btn modal-btn">
+                open modal
+            </button>
+        </div>
+    </header>
+    <!-- modal -->
+    <div class="modal-overlay">
+        <div class="modal-container">
+            <h3>modal content</h3>
+            <button class="close-btn">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.querySelector(".btn");
+        const closeBtn = document.querySelector(".close-btn");
+        const modal = document.querySelector(".modal-overlay");
+
+        btn.addEventListener("click", function(){
+            modal.classList.add("open-modal");
+        });
+        closeBtn.addEventListener("click", function(){
+            modal.classList.remove("open-modal");
+        });
+    </script>
+</body>
+</html>
